@@ -9,3 +9,11 @@
 
 #include "Head in ASSembler.h"
 #include "Stack.h"
+
+#ifdef Debug
+#define PRINTF printf
+#define GO( code ) code
+#else
+#define PRINTF if (0) printf
+#define GO( code ) if (0) printf
+#endif // My_Debug

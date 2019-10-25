@@ -1,6 +1,18 @@
 #define DEBUG
 #undef DEBUG
 
+#define JUMP( COND )                \
+    int val1 = Stack_Pop (&stk1);   \
+    int val2 = Stack_Pop (&stk1);   \
+                                    \
+    if (val2 COND val1)               \
+        Just_Code_For_JMP (&buf_r_ptr, &buf_r); \
+                                                \
+    else buf_r_ptr = buf_r_ptr + sizeof (int);  \
+                                                \
+    Stack_Push (&stk1, val2);                   \
+    Stack_Push (&stk1, val1);
+
 #ifdef DEBUG
 #define DE_BUG( code ) code;
 #else #define DE_BUG( code ) if (0);
@@ -10,7 +22,7 @@ const int MAX_COM = 1000;
 
 #define step 3
 const int FLOAT_P = pow (10, step);
-#define PR_F "%.3f\n"
+#define PR_F "%.3f"
 
 
 const int MAX_COM_NAME = 10;

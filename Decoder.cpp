@@ -65,8 +65,6 @@ int Translate (char* file_name)
     {
         cur_com = *buf_r_ptr;
 
-        printf ("%d\n", cur_com);
-
         switch (cur_com)
         {
             #define ASM_CMD( name, num, args_num, code)     \
@@ -105,24 +103,6 @@ int Translate (char* file_name)
     Stack_Destruct (&stk1);
 
     return vall;
-}
-
-char* Find_Code (char com_n, command com[MAX_COM], int com_num)
-{
-    int i = 0;
-    for (i = 0; i < com_num; i++)
-    {
-        if (com[i].code == (int)com_n)
-        {
-            printf ("com[%d].code is %d\n", i, com[i].code);
-            char* ptr = (char*)calloc(1, MAX_COM_NAME);
-            strcpy (ptr, com[i].name);
-            return ptr;
-        }
-
-    }
-
-    return error;
 }
 
 int Int_Byte_Read (void* ptr)
